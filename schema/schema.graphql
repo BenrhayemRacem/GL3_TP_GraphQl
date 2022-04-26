@@ -23,5 +23,31 @@ type Query {
     infos: Infos!
     getAllStudents: [Student]
     getStudent(id:ID!): Student
+    getAllTodos: [Todo]
+    getTodo(id:ID!): Todo
+    getAllUsers: [User]
+    getUser(id:ID!): User
+}
+enum TodoStatus {
+    wait
+    in_progress
+    postponed
+    done
+    canceled
+
+}
+type Todo {
+    id: ID!
+    name: String!
+    content: String!
+    status: TodoStatus!
+    user: User
+
+}
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    todos: [Todo!]
 }
 

@@ -21,5 +21,21 @@ export const Query = {
         return db.students.find(
             (student) => student.id == id
         );
+    },
+    getAllTodos: () => {
+        return db.todos;
+    },
+    getTodo: (_, {id}) => {
+        return db.todos.find(
+            (todo) => todo.id == id
+        );
+    },
+    getAllUsers: () => {
+        return db.users;
+    },
+    getUser: (_, {id}) => {
+        return db.users.find(
+            (user) => user.id == id
+        );
     }
 }
