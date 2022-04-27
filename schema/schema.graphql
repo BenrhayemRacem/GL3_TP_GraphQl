@@ -6,12 +6,18 @@ enum Gender {
     MALE
     FEMALE
 }
+interface isNamed {
+    name: String
+}
 type Student {
     id: ID!
     name: String!
     age: Int!
     gender: Gender!
     classroom: Classroom
+}
+input AddClassroomInput {
+    designation: String!
 }
 type Classroom {
     id: ID!
@@ -23,5 +29,14 @@ type Query {
     infos: Infos!
     getAllStudents: [Student]
     getStudent(id:ID!): Student
+    getAllClassroom: [Classroom]
+}
+
+type Mutation  {
+    addClassroom(addClassroomInput: AddClassroomInput): Classroom
+}
+
+type Subscription {
+    newClassroom: Classroom!
 }
 

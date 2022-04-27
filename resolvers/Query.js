@@ -1,4 +1,4 @@
-import { db } from "../data/db.js";
+
 
 export const Query = {
     hello: (parent, args, context, info) => {
@@ -14,12 +14,15 @@ export const Query = {
             firstname: 'Aymen'
         }
     },
-    getAllStudents: () => {
+    getAllStudents: (parent, args , { db }) => {
         return db.students;
     },
-    getStudent: (_, {id}) => {
+    getStudent: (_, {id}, { db }) => {
         return db.students.find(
             (student) => student.id == id
         );
-    }
+    },
+    getAllClassroom: (parent, args , { db }) => {
+        return db.classroom;
+    },
 }
