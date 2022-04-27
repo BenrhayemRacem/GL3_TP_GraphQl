@@ -6,12 +6,18 @@ enum Gender {
     MALE
     FEMALE
 }
+interface isNamed {
+    name: String
+}
 type Student {
     id: ID!
     name: String!
     age: Int!
     gender: Gender!
     classroom: Classroom
+}
+input AddClassroomInput {
+    designation: String!
 }
 type Classroom {
     id: ID!
@@ -23,10 +29,45 @@ type Query {
     infos: Infos!
     getAllStudents: [Student]
     getStudent(id:ID!): Student
+    getAllClassroom: [Classroom]
+
     getAllTodos: [Todo]
     getTodo(id:ID!): Todo
     getAllUsers: [User]
     getUser(id:ID!): User
+}
+
+input AddTodoInput {
+    name: String!
+    content: String!
+    userID: String
+
+}
+input UpdateTodoInput {
+    id : ID!
+content :String,
+    name : String,
+    status : TodoStatus
+}
+input DeleteTodoInput {
+    id : ID!
+}
+
+type Mutation  {
+    addClassroom(addClassroomInput: AddClassroomInput): Classroom
+    addTodo(addTodoInput:AddTodoInput) : Todo
+    updateTodo(updateTodoInput : UpdateTodoInput) : Todo
+    deleteTodo(deleteTodoInput:DeleteTodoInput) : Todo
+}
+
+type Subscription {
+    newClassroom: Classroom!
+    todoMutation : payload
+
+}
+type payload {
+    data : Todo ,
+    type : String
 }
 enum TodoStatus {
     wait
