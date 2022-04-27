@@ -15,7 +15,7 @@ export const Mutation = {
         if(userExists) {
             const newTodo = {id:uuidv4() ,status :"wait" , ...addTodoInput}
             db.todos.push(newTodo)
-            pubsub.publish('todoMutation' , {type:"add",data:newTodo})
+            pubsub.publish('todoMutation' , {todoMutation:{type:"add",data:newTodo}})
             return newTodo
         }
         throw new Error("User Not Found")
@@ -29,7 +29,7 @@ export const Mutation = {
             console.log(index)
             todoExists = {...todoExists , ...updateTodoInput} ;
             db.todos.splice(index,1,todoExists);
-            pubsub.publish('todoMutation' , {type:"update",data:todoExists})
+            pubsub.publish('todoMutation' , {todoMutation:{type:"update",data:todoExists}})
             return todoExists
         }
         throw new Error("Todo Not Found")
@@ -41,7 +41,7 @@ export const Mutation = {
         if(todoExists) {
             const index = db.todos.findIndex((todo)=>todo.id == deleteTodoInput.id);
             db.todos.splice(1,index)
-            pubsub.publish('todoMutation' , {payload:{type:"delete",data:todoExists}})
+            pubsub.publish('todoMutation' , {todoMutation:{type:"delete",data:todoExists}})
             return todoExists
         }
         throw new Error("Todo Not Found")
