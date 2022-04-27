@@ -62,10 +62,12 @@ type Mutation  {
 
 type Subscription {
     newClassroom: Classroom!
-    getAllTodos: [Todo]
-    getTodo(id:ID!): Todo
-    getAllUsers: [User]
-    getUser(id:ID!): User
+    todoMutation : payload
+
+}
+type payload {
+    data : Todo ,
+    type : String
 }
 enum TodoStatus {
     wait
