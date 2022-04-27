@@ -1,4 +1,4 @@
-
+import { db } from "../data/db.js";
 
 export const Query = {
     hello: (parent, args, context, info) => {
@@ -37,5 +37,9 @@ export const Query = {
         return db.users.find(
             (user) => user.id == id
         );
-    }
+    },
+
+    getAllClassroom: (parent, args , { db }) => {
+        return db.classroom;
+    },
 }

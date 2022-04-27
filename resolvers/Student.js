@@ -1,4 +1,4 @@
-
+import {db} from "../data/db.js";
 
 export const Student = {
     classroom: ( student,args,{db} ) => {
