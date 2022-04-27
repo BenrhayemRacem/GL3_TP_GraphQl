@@ -1,7 +1,7 @@
-import {db} from "../data/db.js";
+
 
 export const Todo = {
-    user: ( todo ) => {
+    user: ( todo,args,{db} ) => {
         return db.users.find(
             (user) => user.id == todo.user
         );
